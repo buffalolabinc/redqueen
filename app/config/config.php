@@ -2,8 +2,12 @@
 
 return new \Phalcon\Config(array(
     'database' => array(
-        'adapter'           => 'Sqlite',
-        'dbname'            => realpath(__DIR__ . '/../../data/redqueen.sqlite'),
+        'adapter'           => 'Mysql',
+	'host'		    => '127.0.0.1',
+	'port'		    => 3306,
+	'dbname'	    => 'redqueen',
+	'username'	    => 'redqueen',
+        'password'	    => 'redqueen',
     ),
     'application' => array(
         'controllersDir'    => __DIR__ . '/../../app/Controllers/',

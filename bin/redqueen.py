@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import sqlite3
+import MySQLdb
 from xbee import ZigBee
 import serial
 from struct import pack
@@ -11,12 +12,16 @@ import sys
 parser = argparse.ArgumentParser(description='RedQueen door system daemon.')
 parser.add_argument('--baud-rate', type=int, default=115200)
 parser.add_argument('--serial-port', default='ttyUSB0')
-parser.add_argument('--database', required=True)
+# parser.add_argument('--database', required=True)
 
 args = parser.parse_args()
 
 ser = serial.Serial( '/dev/%s' % args.serial_port, args.baud_rate)
 xbee = ZigBee(ser)
+
+xbee.send('at', command='AT')
+xbee.send('at', command='ID')
+xbee.send('at', command='CN')
 
 print "BOOTED"
 sys.stdout.flush()
@@ -29,7 +34,10 @@ while True:
 	sys.stdout.flush()
 
         if 'rf_data' in response:
-            conn = sqlite3.connect(args.database)
+            conn = MySQLdb.connect(host="localhost",
+		user="redqueen",
+		passwd="redqueen",
+		db="redqueen")
             cmd, data = response['rf_data'].split(':', 1)
             if cmd != 'A':
                 continue

@@ -27,7 +27,7 @@ class Logs extends \Phalcon\Mvc\Model
     /**
      * @Column(type="string")
      */
-    protected $datetime;
+    protected $logged_at;
 
     public function getSource() {
         return "log";
