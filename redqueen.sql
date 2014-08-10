@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `cards` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `member_id` int(11) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `code` varchar(6) COLLATE utf8_bin NOT NULL,
   `pin` varchar(32) COLLATE utf8_bin NOT NULL,
   `created_at` datetime NOT NULL,
@@ -38,21 +38,19 @@ CREATE TABLE IF NOT EXISTS `cards` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `members` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `username` varchar(255) COLLATE utf8_bin NOT NULL,
+  `first_name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `gender` int(1) NOT NULL,
   `password` varchar(255) COLLATE utf8_bin NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
