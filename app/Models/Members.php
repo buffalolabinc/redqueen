@@ -80,7 +80,7 @@ class Members extends \Phalcon\Mvc\Model
     }
 
     public function getLastLog() {
-        $query = new \Phalcon\Mvc\Model\Query("SELECT l.* FROM Logs AS l LEFT JOIN Cards AS c WHERE c.member_id = :member_id: ORDER BY l.datetime DESC LIMIT 1", $this->getDI());
+        $query = new \Phalcon\Mvc\Model\Query("SELECT l.* FROM Logs AS l LEFT JOIN Cards AS c WHERE c.member_id = :member_id: ORDER BY l.logged_at DESC LIMIT 1", $this->getDI());
 
         $results = $query->execute(array('member_id' => $this->getId()));
 

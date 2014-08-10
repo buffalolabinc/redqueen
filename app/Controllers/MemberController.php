@@ -49,11 +49,13 @@ class MemberController extends ControllerBase
         $form = $this->view->form = new NewMemberForm($member, array());
 
         if ($this->request->isPost()) {
-            $form->bind($this->request->getPost(), $member);
-
-            if ($form->isValid()) {
-                $member->setPassword($this->security->hash($member->getPassword()))
-                    ->setCreatedAt(new \DateTime('now'));
+            
+	    if ($form->isValid($this->request->getPost())) {
+		$member->setEmail($this->request->getPost('email'))
+		    ->setName($this->request->getPost('name'))
+		    ->setPassword($this->security->hash($member->getPassword()))
+                    ->setCreatedAt(new \DateTime('now'))
+                    ->setUpdatedAt(new \DateTime('now'));
 
                 $member->save();
 

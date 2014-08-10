@@ -1,12 +1,11 @@
 <?php
 
+use \Phalcon\Validation\Validator\PresenceOf;
+
 class NewMemberForm extends MemberForm {
 
     public function initialize(Members $member, $options, $edit = false) {
         parent::initialize($member, $options, $edit);
-
-        $username = $this->get('username');
-        $username->addValidator(new DuplicateDatabaseMemberValidator('username'));
 
         $email = $this->get('email');
         $email->addValidator(new DuplicateDatabaseMemberValidator('email'));

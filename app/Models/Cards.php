@@ -55,7 +55,7 @@ class Cards extends \Phalcon\Mvc\Model
     }
 
     public function getLastLog() {
-        $last_log = $this->getLogs(array('order' => 'datetime DESC', 'limit' => 1));
+        $last_log = $this->getLogs(array('order' => 'logged_at DESC', 'limit' => 1));
 
         if (count($last_log)) {
             return $last_log->getFirst();
