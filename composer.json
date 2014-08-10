@@ -1,6 +1,7 @@
 {
     "require": {
             "silex/silex": "~1.2",
-            "doctrine/dbal": "~2.4"
+            "doctrine/dbal": "2.4.*",
+            "symfony/validator": "2.4.*"
         }
 }

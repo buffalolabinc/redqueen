@@ -3,3 +3,4 @@ data/
 *.swp
 service/log/main
 service/**/service
+vendor/

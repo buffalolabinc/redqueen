@@ -2,13 +2,29 @@
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\Validator\Constraints as Assert;
+
+$app['user.validation_constraints'] = function(Silex\Application $app) {
+    return new Assert\Collection(array(
+        'fields' => array(
+            'first_name' => new Assert\NotBlank(),
+            'last_name' => new Assert\NotBlank(),
+            'email' => new Assert\Email(),
+        )
+    ));
+};
 
 $app->post('/api/users', function(Silex\Application $app, Request $request) {
     $content = $request->getContent();
 
     $user = json_decode($content, true);
 
-    // @TODO validate
+    $violations = $app['validator']->validateValue($user, $app['user.validation_constraints'], 'new');
+
+    if (count($violations)) {
+        throw new BadRequestHttpException();
+    }
 
     /**
      * @var $dbal Doctrine\DBAL\Connection
@@ -34,7 +50,17 @@ $app->patch('/api/users/{id}', function(Silex\Application $app, Request $request
 
     $user = json_decode($content, true);
 
-    // @TODO validate
+    /**
+     * @var $constraint \Symfony\Component\Validator\Constraint
+     */
+    $constraint = $app['user.validation_constraints'];
+    $constraint->allowMissingFields = true;
+
+    $violations = $app['validator']->validateValue($user, $constraint, 'edit');
+
+    if (count($violations)) {
+        throw new BadRequestHttpException();
+    }
 
     /**
      * @var $dbal Doctrine\DBAL\Connection

@@ -14,3 +14,4 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
