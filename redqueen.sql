@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `cards` (
   `code` varchar(6) COLLATE utf8_bin NOT NULL,
   `pin` varchar(32) COLLATE utf8_bin NOT NULL,
   `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
