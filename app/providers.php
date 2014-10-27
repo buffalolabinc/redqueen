@@ -1,7 +1,7 @@
 <?php
 
 use BLInc\Managers\CardManager;
-use BLInc\Managers\UserManager;
+use BLInc\Managers\LogManager;
 use BLInc\Validator\Constraints\UniqueValidator;
 use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Handler\DateHandler;
@@ -34,8 +34,8 @@ $app['validator.blinc_unique_validator'] = function(Silex\Application $app) {
     return new UniqueValidator($app['db']);
 };
 
-$app['user.manager'] = $app->share(function(Silex\Application $app) {
-    return new UserManager($app['db']);
+$app['log.manager'] = $app->share(function(Silex\Application $app) {
+    return new LogManager($app['db']);
 });
 
 $app['card.manager'] = $app->share(function(Silex\Application $app) {
