@@ -66,7 +66,7 @@ while True:
                 print "Found card, invalid pin"
                 sys.stdout.flush()
 
-            c.execute('INSERT INTO log VALUES (NULL, ?, ?, ?, ?)', ( card[0] if card else None, door_card, valid_pin, time.time() ))
+            c.execute('INSERT INTO logs VALUES (NULL, ?, ?, NOW())', ( door_card, valid_pin ))
 
             conn.commit()
 
