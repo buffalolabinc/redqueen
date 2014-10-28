@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date/Time</th>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Valid Pin?</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-show="logs.length == 0">
+      <td colspan="5">No logs to show.</td>
+    </tr>
+    <tr ng-repeat="log in logs">
+      <td>{{ log.created_at }}</td>
+      <td>{{ log.name }}</td>
+      <td>{{ log.code }}</td>
+      <td>
+        <span class="label label-success" ng-show="log.validPin">Yes</span>
+        <span class="label label-danger" ng-hide="log.validPin">No</span>
+      </td>
+      <td>
+        <div class="btn-group">
+          <a class="btn btn-primary" ng-show="!log.name" ng-href="#/rfidcards/new?code={{ log.code }}">Add</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

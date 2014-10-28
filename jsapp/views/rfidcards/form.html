@@ -1,0 +1,29 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="card_name">Name</label>
+    <input type="text" class="form-control" id="card_name" ng-model="rfidCard.name" name="name">
+  </div>
+  <div class="form-group">
+    <label for="card_code">Code</label>
+    <input type="text" class="form-control" id="card_code" ng-model="rfidCard.code" ng-show="rfidCard.$isNew" name="code">
+    <p class="form-control-static" ng-bind="rfidCard.code" ng-show="!rfidCard.$isNew"></p>
+  </div>
+  <div class="form-group">
+    <label for="card_pin">Pin</label>
+    <input type="password" class="form-control" id="card_pin" ng-model="rfidCard.pin" name="pin">
+  </div>
+  <div class="form-group">
+    <label for="card_is_active_yes">Is Active?</label>
+    <div class="radio">
+      <label class="radio-inline">
+        <input type="radio" name="isActive" id="card_is_active_yes" ng-value="true" ng-model="rfidCard.isActive"> yes
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="isActive" id="card_is_active_no" ng-value="false" ng-model="rfidCard.isActive"> no
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+  </div>
+</form>
