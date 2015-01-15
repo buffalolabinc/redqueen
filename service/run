@@ -2,5 +2,7 @@
 
 . /etc/redqueen.conf
 
+$REDQUEEN_SETUART2 on
+
 exec 2>&1
-exec chpst -U pi $REDQUEEN_DAEMON --database $REDQUEEN_DATABASE
+exec chpst -U matt $REDQUEEN_DAEMON --serial-port $REDQUEEN_SERIAL_PORT
