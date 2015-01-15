@@ -1,3 +1,5 @@
+bin/setuart2
+htpasswd
 app/cache/
 data/
 *.swp
