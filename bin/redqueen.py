@@ -48,7 +48,7 @@ while True:
             sys.stdout.flush()
 
             c = conn.cursor()
-            c.execute('SELECT id,pin FROM cards WHERE code = ?', (door_card, ))
+            c.execute('SELECT id,pin FROM cards WHERE code = %s AND isActive = 1', (door_card,))
             card = c.fetchone()
             
             valid_pin = False
@@ -66,7 +66,7 @@ while True:
                 print "Found card, invalid pin"
                 sys.stdout.flush()
 
-            c.execute('INSERT INTO logs VALUES (NULL, ?, ?, NOW())', ( door_card, valid_pin ))
+            c.execute('INSERT INTO logs (code, validPin, created_at) VALUES (%s, %s, NOW())', ( door_card, valid_pin ))
 
             conn.commit()
 
