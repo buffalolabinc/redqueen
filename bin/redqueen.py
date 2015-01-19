@@ -8,6 +8,7 @@ from struct import pack
 import argparse
 import time
 import sys
+from datetime import datetime
 
 parser = argparse.ArgumentParser(description='RedQueen door system daemon.')
 parser.add_argument('--baud-rate', type=int, default=115200)
@@ -47,10 +48,34 @@ while True:
             print "Card ", door_card, " PIN ", pin
             sys.stdout.flush()
 
+            # select distinct c.id,c.code,c.pin from cards c left join card_schedule cs on (c.id = cs.card_id) left join schedules s on (cs.schedule_id = s.id) WHERE s.fri = 1 AND '10:35:00' BETWEEN s.start_time AND s.end_time;
+            # mysqldb.escape_row
+            dowToColumn = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+
+            dateToday = datetime.today()
+
+            dayColumn = dowToColumn[ dateToday.weekday() ] 
+
+            query = """
+            SELECT DISTINCT 
+                c.id,c.pin 
+            FROM 
+                cards c 
+            LEFT JOIN 
+                card_schedule cs ON (c.id = cs.card_id) 
+            LEFT JOIN 
+                schedules s ON (cs.schedule_id = s.id) 
+            WHERE 
+                c.code = %%s 
+                AND c.isActive = 1 
+                AND s.%s = 1 
+                AND %%s BETWEEN s.start_time AND s.end_time
+            """ % (conn.escape_string(dayColumn),)
+
             c = conn.cursor()
-            c.execute('SELECT id,pin FROM cards WHERE code = %s AND isActive = 1', (door_card,))
+            c.execute(query, (door_card, dateToday.strftime('%H:%M:%S'),))
             card = c.fetchone()
-            
+
             valid_pin = False
 
             if card is None:

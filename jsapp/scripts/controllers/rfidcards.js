@@ -20,12 +20,4 @@ angular.module('redqueenUiApp')
       $location.path('/rfidcards/' + rfidCard.id + '/edit');
     };
 
-    //$scope.remove = function RfidCardsCtrlRemove(rfidCard) {
-    //  rfidCard.$remove().then(function() {
-    //    $scope.rfidCards = _.reject($scope.rfidCards, function(c) {
-    //      return c.id == rfidCard.id;
-    //    });
-    //  });
-    //};
-
   }]);

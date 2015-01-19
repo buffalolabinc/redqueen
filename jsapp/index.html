@@ -24,6 +24,7 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <li ng-class="{ active: isActive('/rfidcards') }"><a ng-href="#/rfidcards">Cards</a></li>
+        <li ng-class="{ active: isActive('/schedules') }"><a ng-href="#/schedules">Schedules</a></li>
         <li ng-class="{ active: isActive('/logs') }"><a ng-href="#/logs">Logs</a></li>
       </ul>
       <h3 class="text-muted">redqueenUi</h3>
@@ -75,8 +76,12 @@
   <script src="scripts/controllers/rfidcards.js"></script>
   <script src="scripts/controllers/rfidcard-new.js"></script>
   <script src="scripts/controllers/rfidcard-edit.js"></script>
-  <script src="scripts/controllers/logs.js"></script>
   <script src="scripts/services/log.js"></script>
+  <script src="scripts/controllers/logs.js"></script>
+  <script src="scripts/services/schedule.js"></script>
+  <script src="scripts/controllers/schedules.js"></script>
+  <script src="scripts/controllers/schedule-new.js"></script>
+  <script src="scripts/controllers/schedule-edit.js"></script>
   <script src="scripts/controllers/header.js"></script>
   <script src="scripts/services/underscore.js"></script>
   <!-- endbuild -->

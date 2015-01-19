@@ -1,0 +1,43 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="schedule_name">Name</label>
+    <input type="text" class="form-control" id="schedule_name" ng-model="schedule.name" name="name">
+  </div>
+  <div class="form-group">
+    <label>Days of Week</label>
+    <div class="checkbox">
+      <label class="checkbox-inline">
+        <input type="checkbox" name="mon" id="schedule_mon" ng-model="schedule.mon"> Mon
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="tue" id="schedule_tue" ng-model="schedule.tue"> Tue
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="wed" id="schedule_wed" ng-model="schedule.wed"> Wed
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="thu" id="schedule_thu" ng-model="schedule.thu"> Thu
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="fri" id="schedule_fri" ng-model="schedule.fri"> Fri
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="sat" id="schedule_sat" ng-model="schedule.sat"> Sat
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" name="sun" id="schedule_sun" ng-model="schedule.sun"> Sun
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="schedule_start_time">Start Time</label>
+    <input type="time" class="form-control" id="schedule_start_time" ng-model="schedule.startTime" name="start_time">
+  </div>
+  <div class="form-group">
+    <label for="schedule_end_time">End Time</label>
+    <input type="time" class="form-control" id="schedule_end_time" ng-model="schedule.endTime" name="end_time">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
+  </div>
+</form>

@@ -8,11 +8,17 @@
  * Controller of the redqueenUiApp
  */
 angular.module('redqueenUiApp')
-  .controller('RfidCardEditCtrl', [ '$scope', '$location', '$routeParams', 'RfidCard', function ($scope, $location, $routeParams, RfidCardResource) {
+  .controller('RfidCardEditCtrl', [ '$scope', '$location', '$routeParams', 'RfidCard', 'Schedule', function ($scope, $location, $routeParams, RfidCardResource, ScheduleResource) {
     $scope.rfidCard = null;
+
+    $scope.schedules = [];
 
     RfidCardResource.find($routeParams.id).then(function(data) {
       $scope.rfidCard = data;
+    });
+
+    ScheduleResource.all().then(function(data) {
+      $scope.schedules = data;
     });
 
     $scope.submit = function() {

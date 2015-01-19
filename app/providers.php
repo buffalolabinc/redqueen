@@ -2,6 +2,7 @@
 
 use BLInc\Managers\CardManager;
 use BLInc\Managers\LogManager;
+use BLInc\Managers\ScheduleManager;
 use BLInc\Validator\Constraints\UniqueValidator;
 use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Handler\DateHandler;
@@ -40,6 +41,10 @@ $app['log.manager'] = $app->share(function(Silex\Application $app) {
 
 $app['card.manager'] = $app->share(function(Silex\Application $app) {
     return new CardManager($app['db']);
+});
+
+$app['schedule.manager'] = $app->share(function(Silex\Application $app) {
+    return new ScheduleManager($app['db']);
 });
 
 $app['serializer'] = $app->share(function(Silex\Application $app) {

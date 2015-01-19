@@ -16,10 +16,14 @@ abstract class TimestampedManager implements ManagerInterface {
 
     abstract public function getTable();
 
+    protected function transformRow(array $data) {
+        return $data;
+    }
+
     public function find($id) {
         $data = $this->dbal->fetchAssoc($this->getFindOneQuery(), array('id' => $id));
 
-        return is_array($data) ? $data : null;
+        return is_array($data) ? $this->transformRow($data) : null;
     }
 
     protected function getFindOneQuery() {
@@ -29,7 +33,7 @@ abstract class TimestampedManager implements ManagerInterface {
     public function findAll() {
         $rows = $this->dbal->fetchAll($this->getFindAllQuery());
 
-        return $rows;
+        return array_map([$this, 'transformRow'], $rows);
     }
 
     protected function getFindAllQuery() {

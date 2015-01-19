@@ -1,0 +1,63 @@
+<div class="btn-group pull-right">
+  <a href="#/schedules/new" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> New</a>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Sat</th>
+    <th>Sun</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <td>&nbsp;</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-show="(schedules.length) == 0">
+    <td colspan="4">No schedules added.</td>
+  </tr>
+  <tr ng-repeat="schedule in schedules">
+    <td>{{ schedule.name }}</td>
+    <td>
+      <span class="label label-success" ng-show="schedule.mon">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.mon">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.tue">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.tue">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.wed">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.wed">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.thu">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.thu">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.fri">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.fri">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.sat">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.sat">No</span>
+    </td>
+    <td>
+      <span class="label label-success" ng-show="schedule.sun">Yes</span>
+      <span class="label label-danger" ng-hide="schedule.sun">No</span>
+    </td>
+    <td>{{ schedule.startTime }}</td>
+    <td>{{ schedule.endTime }}</td>
+    <td>
+      <div class="btn-group">
+        <a class="btn btn-default" ng-click="edit(schedule)">Edit</a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

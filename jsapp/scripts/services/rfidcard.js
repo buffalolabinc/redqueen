@@ -54,7 +54,10 @@ angular.module('redqueenUiApp')
 
       var data = {
         name: self.name,
-        isActive: self.isActive
+        isActive: self.isActive,
+        schedules: _.map(self.schedules, function(s) {
+          return { 'id': s };
+        })
       };
 
       if (self.$isNew) {
@@ -71,6 +74,8 @@ angular.module('redqueenUiApp')
           data.pin = self.pin;
         }
       }
+
+      console.log(data);
 
       $http({
         url: url,

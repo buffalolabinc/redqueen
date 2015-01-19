@@ -37,11 +37,33 @@ CREATE TABLE IF NOT EXISTS `cards` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
+CREATE TABLE IF NOT EXISTS `card_schedule` (
+  `card_id` bigint(20) unsigned NOT NULL,
+  `schedule_id` bigint(20) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(6) COLLATE utf8_bin NOT NULL,
   `validPin` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `schedules` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL, 
+  `mon` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `tue` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `wed` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `thu` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `fri` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `sat` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `sun` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `startTime` time NOT NULL,
+  `endTime` time NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 

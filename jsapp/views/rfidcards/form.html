@@ -24,6 +24,11 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="card_schedules">Schedules</label>
+    <select id="card_schedules" class="form-control" multiple="multiple" name="schedules[]" ng-model="rfidCard.schedules" ng-options="schedule.id as schedule.name for schedule in schedules">
+    </select>
+  </div>
+  <div class="form-group">
     <button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
   </div>
 </form>
