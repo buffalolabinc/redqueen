@@ -6,9 +6,8 @@ from xbee import ZigBee
 import serial
 from struct import pack
 import argparse
-import time
 import sys
-from datetime import datetime
+import arrow
 
 parser = argparse.ArgumentParser(description='RedQueen door system daemon.')
 parser.add_argument('--baud-rate', type=int, default=115200)
@@ -48,11 +47,10 @@ while True:
             print "Card ", door_card, " PIN ", pin
             sys.stdout.flush()
 
-            # select distinct c.id,c.code,c.pin from cards c left join card_schedule cs on (c.id = cs.card_id) left join schedules s on (cs.schedule_id = s.id) WHERE s.fri = 1 AND '10:35:00' BETWEEN s.start_time AND s.end_time;
-            # mysqldb.escape_row
             dowToColumn = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
-            dateToday = datetime.today()
+            # Schedules are relative to where the door is, our only door is in EST
+            dateToday = arrow.utcnow().to('America/New_York')
 
             dayColumn = dowToColumn[ dateToday.weekday() ] 
 
@@ -73,7 +71,7 @@ while True:
             """ % (conn.escape_string(dayColumn),)
 
             c = conn.cursor()
-            c.execute(query, (door_card, dateToday.strftime('%H:%M:%S'),))
+            c.execute(query, (door_card, dateToday.format('HH:mm:ss'),))
             card = c.fetchone()
 
             valid_pin = False
