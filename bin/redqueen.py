@@ -67,7 +67,7 @@ while True:
                 c.code = %%s 
                 AND c.isActive = 1 
                 AND s.%s = 1 
-                AND %%s BETWEEN s.start_time AND s.end_time
+                AND %%s BETWEEN s.startTime AND s.endTime
             """ % (conn.escape_string(dayColumn),)
 
             c = conn.cursor()
