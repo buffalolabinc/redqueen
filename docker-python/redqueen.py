@@ -7,6 +7,7 @@ import serial
 from struct import pack
 import argparse
 import sys
+import os
 import arrow
 
 parser = argparse.ArgumentParser(description='RedQueen door system daemon.')
@@ -34,7 +35,9 @@ while True:
 	sys.stdout.flush()
 
         if 'rf_data' in response:
-            conn = MySQLdb.connect(host="localhost",
+            conn = MySQLdb.connect(
+		host=os.environ['MYSQL_PORT_3306_TCP_ADDR'],
+		port=os.environ['MYSQL_PORT_3306_TCP_PORT'],
 		user="redqueen",
 		passwd="redqueen",
 		db="redqueen")
