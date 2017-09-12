@@ -10,11 +10,9 @@ use JMS\Serializer\Handler\HandlerRegistryInterface;
 use JMS\Serializer\Handler\ConstraintViolationHandler;
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'dbs.options' => array(
-        'default' => array(
-            'url' => getenv('REDQUEEN_DB_URL'),
-        )
-    )
+  'db.default_options' => array(
+    'url' => getenv('REDQUEEN_DB_URL'),
+  )
 ));
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
