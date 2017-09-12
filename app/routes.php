@@ -145,13 +145,13 @@ $app->get('/api/cards/{id}', function(Silex\Application $app, Request $request, 
 $app->get('/api/cards', function(Silex\Application $app, Request $request) {
     $cards = $app['card.manager']->findAll();
 
-    return $app->json(['items' => $cards, 'count' => count($cards));
+    return $app->json(['items' => $cards, 'count' => count($cards)]);
 })->bind('get_cards');
 
 $app->get('/api/logs', function(Silex\Application $app, Request $request) {
     $logs = $app['log.manager']->findAll();
 
-    return $app->json(['items' => $logs, 'count' => count($logs));
+    return $app->json(['items' => $logs, 'count' => count($logs)]);
 })->bind('get_logs');
 
 $app->match('/api/schedules', function() {
@@ -248,5 +248,5 @@ $app->get('/api/schedules/{id}', function(Silex\Application $app, Request $reque
 $app->get('/api/schedules', function(Silex\Application $app, Request $request) {
     $schedules = $app['schedule.manager']->findAll();
 
-    return $app->json(['items' => $schedules, 'count' => count($schedules));
+    return $app->json(['items' => $schedules, 'count' => count($schedules)]);
 })->bind('get_schedules');
